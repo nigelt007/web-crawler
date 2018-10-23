@@ -21,7 +21,7 @@ import com.scout24.webcrawler.exceptions.WebCrawlerException;
  */
 public class LinkStatusTask implements Callable<List<LinkDTO>> {
 
-	private List<String> linkList;
+	private List<String> linkList = new ArrayList<>();
 	private List<LinkDTO> linkDtoList = new ArrayList<>();
 
 	public LinkStatusTask(List<String> linkList) {

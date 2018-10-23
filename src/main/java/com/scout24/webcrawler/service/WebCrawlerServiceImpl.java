@@ -41,9 +41,7 @@ import com.scout24.webcrawler.exceptions.InvalidInputException;
 public class WebCrawlerServiceImpl implements WebCrawlerService {
 
 	private Document doc;
-	private Connection.Response response = null;
-	private List<String> internalUrls = new ArrayList<String>();
-	private List<String> externalUrls = new ArrayList<String>();
+	private Connection.Response response ;
 
 	/**
 	 * {@inheritDoc}
@@ -59,6 +57,7 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
 			analysisDto.setAvailable(true);
 			formAnalysisDTO(connResponse, analysisDto);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new InvalidInputException(e);
 		}
 		return analysisDto;
@@ -75,9 +74,11 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
 		response = connResponse;
 		analysisDto.setStatus(getSitemapStatus());
 		List<String> urls = getUrls();
-		traceInternalAndExternalLinks(urls);
+		List<String> internalUrls = new ArrayList<>();
+		List<String> externalUrls = new ArrayList<>();
+		traceInternalAndExternalLinks(urls, internalUrls, externalUrls);
 		analysisDto.setNumLinks(internalUrls.size() + externalUrls.size());
-		pingAllUrlsForStatus(analysisDto);
+		pingAllUrlsForStatus(analysisDto, internalUrls, externalUrls);
 	}
 
 	/**
@@ -117,7 +118,8 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
 	 * @param hyperlinkCollection
 	 * @return
 	 */
-	private void traceInternalAndExternalLinks(List<String> hyperlinkCollection) {
+	private void traceInternalAndExternalLinks(List<String> hyperlinkCollection, List<String> internalUrls,
+			List<String> externalUrls) {
 
 		try {
 			URL aURL = new URL(doc.baseUri());
@@ -141,10 +143,10 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
 	 * 
 	 * @param analysisDto
 	 */
-	private void pingAllUrlsForStatus(AnalysisDTO analysisDto) {
+	private void pingAllUrlsForStatus(AnalysisDTO analysisDto, List<String> internalUrls, List<String> externalUrls) {
 
-		analysisDto.getInternal().addAll(pingInternalUrlsForStatus());
-		analysisDto.getExternal().addAll(pingExternalUrlsForStatus());
+		analysisDto.getInternal().addAll(pingInternalUrlsForStatus(internalUrls));
+		analysisDto.getExternal().addAll(pingExternalUrlsForStatus(externalUrls));
 
 	}
 
@@ -158,7 +160,7 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
 	 * @param internalUrl
 	 * @param linkDto
 	 */
-	private List<LinkDTO> pingInternalUrlsForStatus() {
+	private List<LinkDTO> pingInternalUrlsForStatus(List<String> internalUrls) {
 		List<LinkDTO> internalLinkDtoList = new ArrayList<>();
 		final int numOfThread = 14;
 		ExecutorService threadPool = Executors.newFixedThreadPool(numOfThread);
@@ -196,16 +198,16 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
 	 * @param externalUrl
 	 * @param linkDto
 	 */
-	private List<LinkDTO> pingExternalUrlsForStatus() {
+	private List<LinkDTO> pingExternalUrlsForStatus(List<String> externalUrls) {
 		List<LinkDTO> externalLinkDtoList = new ArrayList<>();
 		final int numOfThread = 14;
 		ExecutorService threadPool = Executors.newFixedThreadPool(numOfThread);
 
 		List<Future<List<LinkDTO>>> futureTaskList = new ArrayList<>();
 
-		List<List<String>> internalUrlsList = Lists.partition(externalUrls, numOfThread);
+		List<List<String>> externalUrlsList = Lists.partition(externalUrls, numOfThread);
 
-		for (List<String> subList : internalUrlsList) {
+		for (List<String> subList : externalUrlsList) {
 			LinkStatusTask task = new LinkStatusTask(subList);
 			Future<List<LinkDTO>> futureTask = threadPool.submit(task);
 			futureTaskList.add(futureTask);

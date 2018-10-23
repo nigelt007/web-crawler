@@ -75,8 +75,11 @@ The API takes a url, which is sent as a query parameter, and passes it onto the 
 Some constraints which were taken into consideration was the timeout of the links.
 Initially it was found that the processing of the links will be a time consuming task, because some of the links will have a redirection policy and the redirection of these links happen after a certain timeout. So if the timeout was more the chances of link to get redirected was more and if the timeout was less the chances of the link getting redirected was less. 
 ##### Timeout for redirected links
-If the timeout was reduced and kept to 10 milliseconds then none of the links were getting redirected and the API response time was less around 2 seconds. If a timeout of 100 ms was set then the no of links which were getting redirected was more, but the API response time was around 15 - 20 seconds. This number was arrived by testing with a familiar link, [Google].
+If the timeout was reduced and kept to 10 milliseconds and 14 threads in the Executor Service then none of the links were getting redirected and the API response time was less around 2 seconds. If a timeout of 100 ms was set then the no of links which were getting redirected was more, but the API response time was around 15 - 20 seconds. This number was arrived by testing with a familiar link, [Google].
 To strike a balance between the redirection and the API responsiveness it was decided that a timeout of 50 millisecond will be only allowed for each link. 
+
+#### Note
+With the above constraint of 50 millisecond timeout it will take around 12 seconds for analysing the [JSON] url with 14 threads running in parallel.
 
 
 ### TODO
@@ -88,3 +91,5 @@ License
 Apache License Version 2.0
 
 [Google]: <https://www.google.com>
+
+[JSON]: <https://www.json.org>
