@@ -61,7 +61,7 @@ public class LinkStatusTask implements Callable<List<LinkDTO>> {
 		try {
 			HttpURLConnection con = (HttpURLConnection) (url.openConnection());
 			con.setInstanceFollowRedirects(false);
-			con.setConnectTimeout(60);
+			con.setConnectTimeout(50);
 			con.connect();
 			int resCode = con.getResponseCode();
 			if (resCode == HttpURLConnection.HTTP_MULT_CHOICE || resCode == HttpURLConnection.HTTP_SEE_OTHER
