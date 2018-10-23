@@ -9,4 +9,5 @@ public class WebCrawlerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebCrawlerApplication.class, args);
 	}
+
 }

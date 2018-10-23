@@ -6,6 +6,13 @@ import java.net.MalformedURLException;
 
 import org.apache.commons.validator.routines.UrlValidator;
 
+/**
+ * A utility class containing all the methods which are used for doing
+ * operations related to the the Web server or the internet.
+ * 
+ * @author Nigel
+ *
+ */
 public class WebUtils {
 
 	/**

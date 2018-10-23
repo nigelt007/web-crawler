@@ -6,10 +6,8 @@ import com.scout24.webcrawler.WebCrawlerApplicationTests;
 
 public class WebCrawlerServiceTest extends WebCrawlerApplicationTests {
 
-
 	@Test
 	public void testAnalyseService() {
-		
 
 	}
 }
