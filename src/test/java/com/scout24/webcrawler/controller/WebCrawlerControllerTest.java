@@ -22,8 +22,14 @@ import com.scout24.webcrawler.WebCrawlerApplicationTests;
 import com.scout24.webcrawler.dto.AnalysisDTO;
 import com.scout24.webcrawler.dto.LinkDTO;
 import com.scout24.webcrawler.dto.LinkDTO.LinkDTOBuilder;
-import com.scout24.webcrawler.service.WebCrawlerService;
+import com.scout24.webcrawler.service.WebCrawlerServiceImpl;
 
+/**
+ * Unit tests for the Controller layer
+ * 
+ * @author Nigel
+ *
+ */
 public class WebCrawlerControllerTest extends WebCrawlerApplicationTests {
 
 	@Autowired
@@ -36,7 +42,7 @@ public class WebCrawlerControllerTest extends WebCrawlerApplicationTests {
 	private static final String TEST_SIMPLE_PAGE = "https://www.york.ac.uk/teaching/cws/wws/webpage1.html";
 
 	@MockBean
-	private WebCrawlerService webCrawlerService;
+	private WebCrawlerServiceImpl webCrawlerService;
 
 	private static final String TEST_JSON = "{\r\n"
 			+ "  \"url\": \"https://www.york.ac.uk/teaching/cws/wws/webpage1.html\",\r\n" + "  \"numLinks\": 2,\r\n"
@@ -53,6 +59,11 @@ public class WebCrawlerControllerTest extends WebCrawlerApplicationTests {
 
 	private AnalysisDTO mockAnalysisDto = new AnalysisDTO();
 
+	/**
+	 * This method will be run in the beginning before all the execution of all the
+	 * tests starts.
+	 * Populating the analysis dto before the test execution.
+	 */
 	@Before
 	public void setup() {
 		AnalysisDTO.AnalysisDTOBuilder analysisDtoBuilder = AnalysisDTO.newBuilder()
@@ -74,6 +85,11 @@ public class WebCrawlerControllerTest extends WebCrawlerApplicationTests {
 		mockAnalysisDto = analysisDtoBuilder.makeCandidateApplicationDTO();
 	}
 
+	/**
+	 * Test whether a valid URL is returning the correct HTTP Status code.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testApi() throws Exception {
 
@@ -83,6 +99,11 @@ public class WebCrawlerControllerTest extends WebCrawlerApplicationTests {
 
 	}
 
+	/**
+	 * Test whether an invalid uri is returning the correct HTTP status code.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testApi_ForInvalidUrl() throws Exception {
 
@@ -93,6 +114,12 @@ public class WebCrawlerControllerTest extends WebCrawlerApplicationTests {
 
 	}
 
+	/**
+	 * Test whether the Response content body which is being sent from the API is
+	 * correct by comparing with the mock data.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testApi_ForSimpleValidUrl() throws Exception {
 

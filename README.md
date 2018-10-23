@@ -29,6 +29,7 @@ $ mvn clean install
 ```
 The above command will build and install the dependencies along with that it will run the test cases for the application.
 If you want to skip the tests.
+
 ```sh
 mvn install -DskipTests
 ```
@@ -77,6 +78,9 @@ Initially it was found that the processing of the links will be a time consuming
 If the timeout was reduced and kept to 10 milliseconds then none of the links were getting redirected and the API response time was less around 2 seconds. If a timeout of 100 ms was set then the no of links which were getting redirected was more, but the API response time was around 15 - 20 seconds. This number was arrived by testing with a familiar link, [Google].
 To strike a balance between the redirection and the API responsiveness it was decided that a timeout of 50 millisecond will be only allowed for each link. 
 
+
+### TODO
+* More tests need to be added.
 
 License
 ----

@@ -45,15 +45,10 @@ public class WebCrawlerController {
 			@ApiResponse(code = 400, message = "The URL is not a valid HTTP URL") })
 	public ResponseEntity<AnalysisDTO> analyseUrl(@RequestParam(name = PARAM_URI) String uri)
 			throws InvalidInputException, IOException {
-		System.out.println("Got here the url dude : " + uri);
 		AnalysisDTO analysisDto = null;
 		try {
-			long startTime = System.currentTimeMillis();
 			validateUri(uri);
 			analysisDto = webCrawlerService.analyseInputUrl(uri);
-			long endTime = System.currentTimeMillis();
-			long timeTaken = (endTime - startTime) / (1000);
-			System.out.println("took " + timeTaken + " seconds.");
 		} catch (InvalidInputException e) {
 			throw e;
 		}
