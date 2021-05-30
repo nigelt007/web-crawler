@@ -5,8 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.nigel.webcrawler.dto.AnalysisDTO;
+import com.nigel.webcrawler.service.WebCrawlerServiceImpl;
 import com.scout24.webcrawler.WebCrawlerApplicationTests;
-import com.scout24.webcrawler.dto.AnalysisDTO;
 
 /**
  * Unit tests for the service layer of Web Crawler.

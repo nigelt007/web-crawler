@@ -1,4 +1,4 @@
-# Web Crawler for Scout 24
+# Web Crawler 
 
 This is a web crawler which is designed for crawling any url which is provided to it. The Web crawler analyses the url and the web page received from the web server of the url and returns back a brief analysis of the internal and external URLs which were found inside the web page.
 

@@ -16,7 +16,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.scout24.webcrawler.dto.AnalysisDTO;
+import com.nigel.webcrawler.dto.AnalysisDTO;
 
 /**
  * Integration tests for the REST and Service Layer.

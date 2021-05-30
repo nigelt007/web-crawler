@@ -18,11 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.nigel.webcrawler.dto.AnalysisDTO;
+import com.nigel.webcrawler.dto.LinkDTO;
+import com.nigel.webcrawler.dto.LinkDTO.LinkDTOBuilder;
+import com.nigel.webcrawler.service.WebCrawlerServiceImpl;
 import com.scout24.webcrawler.WebCrawlerApplicationTests;
-import com.scout24.webcrawler.dto.AnalysisDTO;
-import com.scout24.webcrawler.dto.LinkDTO;
-import com.scout24.webcrawler.dto.LinkDTO.LinkDTOBuilder;
-import com.scout24.webcrawler.service.WebCrawlerServiceImpl;
 
 /**
  * Unit tests for the Controller layer
