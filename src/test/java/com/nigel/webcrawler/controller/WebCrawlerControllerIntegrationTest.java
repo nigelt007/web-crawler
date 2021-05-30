@@ -1,4 +1,4 @@
-package com.scout24.webcrawler.controller;
+package com.nigel.webcrawler.controller;
 
 import static org.junit.Assert.assertEquals;
 

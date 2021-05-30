@@ -1,4 +1,4 @@
-package com.scout24.webcrawler;
+package com.nigel.webcrawler;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.scout24.webcrawler.controller;
+package com.nigel.webcrawler.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,11 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.nigel.webcrawler.WebCrawlerApplicationTests;
 import com.nigel.webcrawler.dto.AnalysisDTO;
 import com.nigel.webcrawler.dto.LinkDTO;
 import com.nigel.webcrawler.dto.LinkDTO.LinkDTOBuilder;
 import com.nigel.webcrawler.service.WebCrawlerServiceImpl;
-import com.scout24.webcrawler.WebCrawlerApplicationTests;
 
 /**
  * Unit tests for the Controller layer

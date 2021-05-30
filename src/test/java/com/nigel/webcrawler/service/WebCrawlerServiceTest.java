@@ -1,13 +1,13 @@
-package com.scout24.webcrawler.service;
+package com.nigel.webcrawler.service;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.nigel.webcrawler.WebCrawlerApplicationTests;
 import com.nigel.webcrawler.dto.AnalysisDTO;
 import com.nigel.webcrawler.service.WebCrawlerServiceImpl;
-import com.scout24.webcrawler.WebCrawlerApplicationTests;
 
 /**
  * Unit tests for the service layer of Web Crawler.
